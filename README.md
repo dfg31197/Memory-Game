@@ -10,5 +10,5 @@ You click on two cards , if the value they contain matches,  you progress. If no
 
 ### Developer Mode
     Meant for development purposes only.
-**Fire up the script console of the browser by pressing `Control+Shift+J` to what every card holds**
+**Fire up the script console of the browser by pressing `Control+Shift+J` to see what every card holds**
     
