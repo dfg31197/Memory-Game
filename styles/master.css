@@ -1,30 +1,108 @@
-.container_style{background-color: lightblue;margin:0 auto;border-radius: 10px;}
-.mid{background-color: rgba(173,216,230,0.4)}
-.settings{float:right;}
-.row{height:16%;}
-.box{width:24%;height:99%;margin:4px;background-color: rgba(255,240,245,1);box-shadow: 4px 4px 16px 4px #818181;border-radius: 2px;text-align: center;opacity: 0.9;transition:all 0.3s ease-in-out;}
-.box:hover{cursor:pointer;box-shadow: 0.5px 0.5px 0.5px 0.5px teal;transition:all 0.3s ease-in-out;background-color: #e1e1e1;}
-.text{font-size: 66px;color:indigo;}
-.foot{background-color: rgba(230,230,250,0.5);font-family: Helvetica;color:#f1f1f1;opacity: 0.8;font-size: 32px;}
-.moves,.for_madd_dogg,.score,.timer{background-color: #212121;opacity: 0.6;font-size: 66px;color:green;text-align: center}
-.for_madd_dogg:hover{background-color: #ff7b7b;color: white;cursor: pointer;}
-.header{text-align: center;background-color: rgba(230,230,250,0.5);color:darkblue;margin: 0;opacity: 0.8;}
-.icon{color:darkorange;cursor: pointer;}
-.dev{cursor: pointer;}
-body{background: url("../images/back.jpg");}
-@media only screen and (max-width:993px)
-{
-  .box{width:23.7%;margin:4px;}
-  .text,.score,.moves,.timer,.for_madd_dogg{font-size: 40px;}
+.container_style {
+    background-color: lightblue;
+    margin: 0 auto;
+    border-radius: 10px;
 }
-@media only screen and (max-width:662px)
-{
-  .box{width: 22.7%;}
-
+.mid {
+    background-color: rgba(173, 216, 230, 0.4)
 }
-@media only screen and (max-width:397px)
-{
-  .box{width: 22.0%;}
-  .text,.score,.moves,.timer,.for_madd_dogg{font-size: 30px;}
-  .title,.header{font-size: 20px;}
+.settings {
+    float: right;
+}
+.row {
+    height: 16%;
+}
+.box {
+    width: 24%;
+    height: 99%;
+    margin: 4px;
+    background-color: rgba(255, 240, 245, 1);
+    box-shadow: 4px 4px 16px 4px #818181;
+    border-radius: 2px;
+    text-align: center;
+    opacity: 0.9;
+    transition: all 0.3s ease-in-out;
+}
+.box:hover {
+    cursor: pointer;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px teal;
+    transition: all 0.3s ease-in-out;
+    background-color: #e1e1e1;
+}
+.text {
+    font-size: 66px;
+    color: indigo;
+}
+.foot {
+    background-color: rgba(230, 230, 250, 0.5);
+    font-family: Helvetica;
+    color: #f1f1f1;
+    opacity: 0.8;
+    font-size: 32px;
+}
+.moves,
+.for_madd_dogg,
+.score,
+.timer {
+    background-color: #212121;
+    opacity: 0.6;
+    font-size: 66px;
+    color: green;
+    text-align: center
+}
+.for_madd_dogg:hover {
+    background-color: #ff7b7b;
+    color: white;
+    cursor: pointer;
+}
+.header {
+    text-align: center;
+    background-color: rgba(230, 230, 250, 0.5);
+    color: darkblue;
+    margin: 0;
+    opacity: 0.8;
+}
+.icon {
+    color: darkorange;
+    cursor: pointer;
+}
+.dev {
+    cursor: pointer;
+}
+body {
+    background: url("../images/back.jpg");
+}
+@media only screen and (max-width: 993px) {
+    .box {
+        width: 23.7%;
+        margin: 4px;
+    }
+    .text,
+    .score,
+    .moves,
+    .timer,
+    .for_madd_dogg {
+        font-size: 40px;
+    }
+}
+@media only screen and (max-width: 662px) {
+    .box {
+        width: 22.7%;
+    }
+}
+@media only screen and (max-width: 397px) {
+    .box {
+        width: 22.0%;
+    }
+    .text,
+    .score,
+    .moves,
+    .timer,
+    .for_madd_dogg {
+        font-size: 30px;
+    }
+    .title,
+    .header {
+        font-size: 20px;
+    }
 }
