@@ -5,7 +5,8 @@
     Iconic Memory Cards-Flipping game coded in JavaScript.
 
 ### How to play
-    You click on two cards , if the value they contain matches,  you progress. If not, they are flipped back! It either cases, your move count increases and your score is judged based on your move count.
+You click on two cards , if the value they contain matches,  you progress. If not, they are flipped back! In either
+    cases, your move count increases and your score is judged based on your move count.
 
 ### Developer Mode
     Meant for development purposes only.
