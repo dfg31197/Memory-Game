@@ -3,7 +3,7 @@ var memory_elements = "A A B B C C D D E E F F G G H H".split(" ");
 var rows =4;
 var dev="";
 var size = memory_elements.length;
-var memory_elements_obj= [];
+var memory_buffer_obj=[];
 var memory_buffer_val = [];
 var all_elements = [];
 var game_count = 0;
@@ -36,9 +36,13 @@ function ShowTime()
 {
   $(".timer_val").html(GetGameTime());
 }
-function AddToMemory(obj)
+function AddToMemory()
 {
-  memory_buffer_obj.push(obj);
+  memory_elements_obj.push(memory_buffer_obj[0]);
+  memory_elements_obj.push(memory_buffer_obj[1]);
+  memory_elements_obj_val.push(memory_buffer_val[0]);
+  memory_elements_obj_val.push(memory_buffer_val[1]);
+  //console.log(memory_elements_obj_val);
 }
 function ClickIncrease()
 {click_count+=1;
@@ -123,6 +127,8 @@ var res="";
 game_time = 0;
 flip_count = 0;
 click_count = 0;
+memory_elements_obj = [];
+memory_elements_obj_val = [];
 $(".moves_val").html(click_count);
 $(".score_star").html("⛥⛥⛥");
 var bleh=1,x,y;
@@ -159,9 +165,9 @@ function flip(obj,val)
   {
     ClickIncrease()
     AddToBuffer(obj,val);
-    AddToMemory(obj)
     if(Matched())
     {
+      //AddToMemory();
       ClearBuffer();
       FlipIncrease();
     }
@@ -175,7 +181,7 @@ function flip(obj,val)
   if(count>=16)
   {
     game_count+=1;
-    Reset();
+    setTimeout(Reset,3000);
   }
 }
 }
