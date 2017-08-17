@@ -12,6 +12,7 @@ var click_count = 0;
 var flip_count = 0;
 var right_count = 0;
 var temp_buffer_object1, temp_buffer_object1;
+var ClickControl = 0;
 
 // Checks if the block is already flipped
 function UnflippedTile(block) {
@@ -77,8 +78,9 @@ function Second() {
 }
 // Adds the clicked elements to pair-checking array
 function AddToBuffer(data, val) {
+  if(memory_buffer_val.length<3){
     memory_buffer_obj.push(data);
-    memory_buffer_val.push(val);
+    memory_buffer_val.push(val);}
 }
 // Checks if pair checking array contains the same value
 function Matched() {
@@ -90,7 +92,7 @@ function Matched() {
         setTimeout(() => {
             temp_buffer_object1.style.backgroundColor = "#fcfefa";
             temp_buffer_object2.style.backgroundColor = "#fcfefa";
-        }, 666);
+        }, 333);
         return 1;
     } else {
         return 0;
@@ -108,7 +110,7 @@ function HideBufferElements() {
         temp_buffer_object2.innerHTML = "";
         temp_buffer_object1.style.backgroundColor = "#fcfefa";
         temp_buffer_object2.style.backgroundColor = "#fcfefa";
-    }, 666);
+    }, 333);
 }
 // Clears the pair-checking buffer
 function ClearBuffer() {
@@ -145,7 +147,7 @@ function Reset() {
     memory_elements_obj = [];
     memory_elements_obj_val = [];
     $(".moves_val").html(click_count);
-    $(".score_star").html("⛥⛥⛥");
+    //$(".score_star").html("⛥⛥⛥");
     var bleh = 1,
         x, y;
     // Adds the cards to the container  as divs
@@ -195,9 +197,10 @@ function flip(obj, val) {
         var count = GetFlipCount()
         if (count >= 16) {
             game_count += 1;
-            setTimeout(Reset, 3000);
+            setTimeout(Reset, 2000);
         }
-    }
+
+  }
 }
 
 
