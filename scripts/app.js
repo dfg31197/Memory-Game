@@ -1,20 +1,29 @@
 
 var memory_elements = "A A B B C C D D E E F F G G H H".split(" ");
 var rows =4;
+var dev="";
 var size = memory_elements.length;
-var memory_buffer_obj = [];
+var memory_elements_obj= [];
 var memory_buffer_val = [];
+var all_elements = [];
 var game_count = 0;
+var game_time = 0;
 var click_count = 0;
 var flip_count = 0;
+var right_count = 0;
 var temp_buffer_object1,temp_buffer_object1;
+
 function UnflippedTile(block)
 {
   if(block.innerHTML=== "" && memory_buffer_val.length<2)
   {return 1;}else{return 0;}
 }
+
+function GetGameTime(){return game_time;}
+function IncrementGameTime(){game_time++;ShowTime();}
 function FlipIncrease(){flip_count+=2;}
 function GetFlipCount(){return flip_count;}
+setInterval(IncrementGameTime,1000);
 function First()
 {if(memory_buffer_val.length === 0)
   {
@@ -23,15 +32,23 @@ function First()
   else  {
     return 0;
 }}
+function ShowTime()
+{
+  $(".timer_val").html(GetGameTime());
+}
+function AddToMemory(obj)
+{
+  memory_buffer_obj.push(obj);
+}
 function ClickIncrease()
 {click_count+=1;
   if(click_count <= 10)
-  {$(".score").html("Veteran");}
+  {$(".score_star").html("⛥⛥⛥");}
   else if(click_count > 10 && click_count < 20)
   {
-    $(".score").html("Experienced");
-  }else if(click_count >= 20){$(".score").html("Noob");}
-  $(".moves").html(click_count);
+    $(".score_star").html("⛥⛥");
+  }else if(click_count >= 20){$(".score_star").html("⛥");}
+  $(".moves_val").html(click_count);
 }
 function Second()
 {if(memory_buffer_val.length === 1)
@@ -96,30 +113,38 @@ function Reset_Click()
   game_count = 0;
   click_count = 0;
   ClearBuffer();
-  $(".moves").html(click_count);
+  $(".moves_val").html(click_count);
   Reset();
 }
 
 function Reset()
 {var arr = Randomize(memory_elements);
 var res="";
+game_time = 0;
 flip_count = 0;
 click_count = 0;
-$(".moves").html(click_count);
-$(".score").html("Veteran");
+$(".moves_val").html(click_count);
+$(".score_star").html("⛥⛥⛥");
 var bleh=1,x,y;
 for(var i=1;i<=rows;i++){
 
       for(var j=bleh;j<=rows*i;j++){
   		res += '<div class="col-xs-3 jumbotron box" onclick="flip(this,\''+memory_elements[j-1]+'\')"></div>'
+      dev = dev.concat(" "+memory_elements[j-1]);
     }
+    console.log(dev);
+    dev = "";
+
   $(".iterator:eq("+(i-1)+")").html(res);
   res = ""
   bleh+=rows;
+
+
   }
+  console.log("\n - - - \n")
   if(game_count>0)
   {
-    alert("Well done mate! Starting over!");
+    alert("Well done mate!\nScore "+$(".score_star").html()+"\nTime : "+$(".timer_val").html()+" seconds!");
   }
 
 }
@@ -134,6 +159,7 @@ function flip(obj,val)
   {
     ClickIncrease()
     AddToBuffer(obj,val);
+    AddToMemory(obj)
     if(Matched())
     {
       ClearBuffer();
@@ -144,9 +170,9 @@ function flip(obj,val)
       ClearBuffer();
     }
   }
-  console.log(memory_buffer_val);
+
   var count = GetFlipCount()
-  if(count>= 16)
+  if(count>=16)
   {
     game_count+=1;
     Reset();

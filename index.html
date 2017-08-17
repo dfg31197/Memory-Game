@@ -13,15 +13,21 @@
     </header>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-4 moves">
-          0
+
+          <div class="col-xs-3 timer" onclick="Reset_Click()">
+            <span class="icon" title="Timer">⌛ </span><span class="timer_val"></span>
+          </div>
+
+        <div class="col-xs-3 moves">
+          <span class="icon" title="Moves">👆</span><span class="moves_val"></span>
         </div>
-        <div class="col-xs-4 score">
-          Veteran
+        <div class="col-xs-3 score" title="Score">
+          <span class="icon score_star">⛥</span><span class="score_val"></span>
         </div>
-        <div class="col-xs-4 for_madd_dogg" onclick="Reset_Click()">
+        <div title="Start over with New Set" class="col-xs-3 for_madd_dogg" onclick="Reset_Click()">
           Reset
         </div>
+
       </div>
     </div>
     <div class="container-fluid mid">
@@ -41,7 +47,7 @@
 
 </div>
 </div>
-<footer class=" navbar navbar-fixed-bottom foot">DFG</footer>
+<footer class=" navbar navbar-fixed-bottom foot"><span title="Yours truly" class="dev">DFG</span></footer>
 </div>
 <script src="scripts/app.js" charset="utf-8"></script>
   </body>
