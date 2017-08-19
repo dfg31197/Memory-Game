@@ -2,7 +2,6 @@
 var memory_elements = "A A B B C C D D E E F F G G H H".split(" ");
 var rows = 4;
 var dev = "";
-var size = memory_elements.length;
 var memory_buffer_obj = [];
 var memory_buffer_val = [];
 var all_elements = [];
@@ -11,8 +10,9 @@ var game_time = 0;
 var click_count = 0;
 var flip_count = 0;
 var right_count = 0;
-var temp_buffer_object1, temp_buffer_object1;
-var ClickControl = 0;
+// The two varialbes below being used to store memory buffer objects temporarily in functions Matched and HideBufferElements
+var temp_memory_buffer_object1, temp_memory_buffer_object2;
+
 
 // Checks if the block is already flipped
 function UnflippedTile(block) {
@@ -78,20 +78,21 @@ function Second() {
 }
 // Adds the clicked elements to pair-checking array
 function AddToBuffer(data, val) {
-  if(memory_buffer_val.length<3){
-    memory_buffer_obj.push(data);
-    memory_buffer_val.push(val);}
+    if (memory_buffer_val.length < 3) {
+        memory_buffer_obj.push(data);
+        memory_buffer_val.push(val);
+    }
 }
 // Checks if pair checking array contains the same value
 function Matched() {
     if (memory_buffer_val[0] === memory_buffer_val[1]) {
-        temp_buffer_object1 = memory_buffer_obj[0];
-        temp_buffer_object2 = memory_buffer_obj[1];
-        temp_buffer_object1.style.backgroundColor = "gold";
-        temp_buffer_object2.style.backgroundColor = "gold";
+        temp_memory_buffer_object1 = memory_buffer_obj[0];
+        temp_memory_buffer_object2 = memory_buffer_obj[1];
+        temp_memory_buffer_object1.style.backgroundColor = "gold";
+        temp_memory_buffer_object2.style.backgroundColor = "gold";
         setTimeout(() => {
-            temp_buffer_object1.style.backgroundColor = "#fcfefa";
-            temp_buffer_object2.style.backgroundColor = "#fcfefa";
+            temp_memory_buffer_object1.style.backgroundColor = "#fcfefa";
+            temp_memory_buffer_object2.style.backgroundColor = "#fcfefa";
         }, 333);
         return 1;
     } else {
@@ -100,16 +101,16 @@ function Matched() {
 }
 // Hides the pair-checking array elements
 function HideBufferElements() {
-    temp_buffer_object1 = memory_buffer_obj[0];
-    temp_buffer_object2 = memory_buffer_obj[1];
+    temp_memory_buffer_object1 = memory_buffer_obj[0];
+    temp_memory_buffer_object2 = memory_buffer_obj[1];
     // Added a little animation while i was at it.
-    temp_buffer_object1.style.backgroundColor = "#ff7b7b";
-    temp_buffer_object2.style.backgroundColor = "#ff7b7b";
+    temp_memory_buffer_object1.style.backgroundColor = "#ff7b7b";
+    temp_memory_buffer_object2.style.backgroundColor = "#ff7b7b";
     setTimeout(() => {
-        temp_buffer_object1.innerHTML = "";
-        temp_buffer_object2.innerHTML = "";
-        temp_buffer_object1.style.backgroundColor = "#fcfefa";
-        temp_buffer_object2.style.backgroundColor = "#fcfefa";
+        temp_memory_buffer_object1.innerHTML = "";
+        temp_memory_buffer_object2.innerHTML = "";
+        temp_memory_buffer_object1.style.backgroundColor = "#fcfefa";
+        temp_memory_buffer_object2.style.backgroundColor = "#fcfefa";
     }, 333);
 }
 // Clears the pair-checking buffer
@@ -148,13 +149,13 @@ function Reset() {
     memory_elements_obj_val = [];
     $(".moves_val").html(click_count);
     //$(".score_star").html("⛥⛥⛥");
-    var bleh = 1,
+    var loop_control = 1,
         x, y;
     // Adds the cards to the container  as divs
     for (var i = 1; i <= rows; i++) {
 
-        for (var j = bleh; j <= rows * i; j++) {
-            res += '<div class="col-xs-3 jumbotron box" onclick="flip(this,\'' + memory_elements[j - 1] + '\')"></div>'
+        for (var j = loop_control; j <= rows * i; j++) {
+            res += '<div class="col-xs-3 jumbotron box" onclick="Flip(this,\'' + memory_elements[j - 1] + '\')"></div>'
             dev = dev.concat(" " + memory_elements[j - 1]);
         }
         // For development purposes only
@@ -163,7 +164,7 @@ function Reset() {
 
         $(".iterator:eq(" + (i - 1) + ")").html(res);
         res = ""
-        bleh += rows;
+        loop_control += rows;
 
 
     }
@@ -171,12 +172,11 @@ function Reset() {
     // Checks if the game is running the first time
     if (game_count > 0) {
         alert("Well done mate!\nScore " + $(".score_star").html() + "\nTime : " + $(".timer_val").html() + " seconds!");
+        $(".score_star").html("⛥⛥⛥");
     }
-
 }
-// AAAND here's the entire logic of the game
-// Easy huh
-function flip(obj, val) {
+// Executes whenever user clicks on a card/game-div.
+function Flip(obj, val) {
     if (UnflippedTile(obj)) {
         obj.innerHTML = "<span class='text'>" + val + "</span>";
         if (First()) {
@@ -197,10 +197,10 @@ function flip(obj, val) {
         var count = GetFlipCount()
         if (count >= 16) {
             game_count += 1;
-            setTimeout(Reset, 2000);
+            setTimeout(Reset, 1000);
         }
 
-  }
+    }
 }
 
 
